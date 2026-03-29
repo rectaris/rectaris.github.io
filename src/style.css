@@ -230,6 +230,7 @@ a {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
   gap: 18px;
+  align-items: start;
 }
 
 .tool-card {
@@ -243,6 +244,7 @@ a {
     rgba(255, 255, 255, 0.88),
     rgba(255, 242, 235, 0.96)
   );
+  align-self: start;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -288,6 +290,7 @@ a {
   border: 1px solid var(--border);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.58);
+  align-self: start;
 }
 
 @media (prefers-color-scheme: dark) {
