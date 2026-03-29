@@ -226,15 +226,9 @@ a {
   box-shadow: 0 8px 24px var(--shadow);
 }
 
-.section-title {
-  margin: 0 0 14px;
-  font-size: 20px;
-  color: var(--text-primary);
-}
-
 .portal-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
   gap: 18px;
 }
 
@@ -286,18 +280,20 @@ a {
   line-height: 1.8;
 }
 
-.guide-list {
-  padding-left: 20px;
-}
-
-.guide-list li + li {
-  margin-top: 8px;
-}
-
 .meta-card {
   display: grid;
   gap: 14px;
   align-content: start;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+@media (prefers-color-scheme: dark) {
+  .meta-card {
+    background: rgba(27, 32, 37, 0.58);
+  }
 }
 
 .meta-label {
@@ -313,6 +309,66 @@ a {
   font-size: 15px;
   line-height: 1.7;
   color: var(--text-primary);
+}
+
+.guide-disclosure {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.guide-summary {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.guide-summary::-webkit-details-marker {
+  display: none;
+}
+
+.guide-summary::after {
+  content: "開く";
+  justify-self: end;
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.guide-disclosure[open] .guide-summary::after {
+  content: "閉じる";
+}
+
+.guide-summary__eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #b54d33;
+}
+
+@media (prefers-color-scheme: dark) {
+  .guide-summary__eyebrow {
+    color: #ffb39f;
+  }
+}
+
+.guide-summary__title {
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.guide-list {
+  padding: 0 20px 18px 36px;
+}
+
+.guide-list li + li {
+  margin-top: 8px;
 }
 
 .footer-note {

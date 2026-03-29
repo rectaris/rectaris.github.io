@@ -60,16 +60,18 @@ app.innerHTML = `
               学マス年表の閲覧、キャラクター別の見比べ、出来事の詳細確認
             </p>
           </div>
+          <details class="guide-disclosure">
+            <summary class="guide-summary">
+              <span class="guide-summary__eyebrow">gakumasu-timeline の使い方</span>
+              <span class="guide-summary__title">開いて確認する手順を見る</span>
+            </summary>
+            <ol class="guide-list">
+              <li>まず gakumasu-timeline を開いて、全体の時系列を確認する</li>
+              <li>必要に応じてレーンやカテゴリを絞り込み、見たい対象だけに寄せる</li>
+              <li>気になるイベントを選択して詳細を読む</li>
+            </ol>
+          </details>
         </aside>
-      </section>
-
-      <section class="section-card">
-        <h2 class="section-title">使い方の入口</h2>
-        <ol class="guide-list">
-          <li>まず gakumasu-timeline を開いて、全体の時系列を確認する</li>
-          <li>必要に応じてレーンやカテゴリを絞り込み、見たい対象だけに寄せる</li>
-          <li>気になるイベントを選択して詳細を読む</li>
-        </ol>
       </section>
     </div>
 
