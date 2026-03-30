@@ -39,7 +39,7 @@ app.innerHTML = `
           <h2 class="tool-title">gakumasu-timeline</h2>
           <p class="tool-description">
             学マスのコミュや出来事を、時間軸の上で俯瞰しながら確認できる年表アプリです。
-            ドラッグ移動、ホイールズーム、詳細パネルによる確認を前提にした閲覧体験を提供します。
+            表示期間とレーン密度を調整しながら、見たい対象をレーン単位で絞り込んで確認できます。
           </p>
           <a
             class="button-link button-link--primary"
@@ -57,7 +57,7 @@ app.innerHTML = `
           <div>
             <p class="meta-label">用途</p>
             <p class="meta-value">
-              学マス年表の閲覧、キャラクター別の見比べ、出来事の詳細確認
+              学マス年表の閲覧、レーン単位の見比べ、出来事の詳細確認
             </p>
           </div>
           <details class="guide-disclosure">
@@ -67,8 +67,8 @@ app.innerHTML = `
             </summary>
             <ol class="guide-list">
               <li>まず gakumasu-timeline を開いて、全体の時系列を確認する</li>
-              <li>必要に応じてレーンやカテゴリを絞り込み、見たい対象だけに寄せる</li>
-              <li>気になるイベントを選択して詳細を読む</li>
+              <li>表示期間とレーン密度を調整し、見やすい範囲に合わせる</li>
+              <li>必要に応じてカテゴリやレーンを絞り込み、気になるイベントの詳細を読む</li>
             </ol>
           </details>
         </aside>
