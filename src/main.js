@@ -1,5 +1,5 @@
 const ADSENSE_CLIENT = "ca-pub-1161740700371268";
-const PORTAL_FOOTER_AD_SLOT = "";
+const PORTAL_FOOTER_AD_SLOT = "7736293518";
 
 const app = document.querySelector("#app");
 
