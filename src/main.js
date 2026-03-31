@@ -1,7 +1,30 @@
+const ADSENSE_CLIENT = "ca-pub-1161740700371268";
+const PORTAL_FOOTER_AD_SLOT = "";
+
 const app = document.querySelector("#app");
 
 if (!app) {
   throw new Error("#app was not found");
+}
+
+function renderPortalFooterAd() {
+  if (!PORTAL_FOOTER_AD_SLOT) {
+    return "";
+  }
+
+  return `
+    <section class="portal-ad-section" aria-label="広告">
+      <p class="portal-ad-section__label">広告</p>
+      <ins
+        class="adsbygoogle portal-ad-section__unit"
+        style="display:block"
+        data-ad-client="${ADSENSE_CLIENT}"
+        data-ad-slot="${PORTAL_FOOTER_AD_SLOT}"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+    </section>
+  `;
 }
 
 app.innerHTML = `
@@ -78,5 +101,11 @@ app.innerHTML = `
     <p class="footer-note">
       このページはポータルです。年表の機能仕様や詳細な操作説明は、リンク先の gakumasu-timeline 側で管理しています。
     </p>
+    ${renderPortalFooterAd()}
   </main>
 `;
+
+if (PORTAL_FOOTER_AD_SLOT) {
+  window.adsbygoogle = window.adsbygoogle || [];
+  window.adsbygoogle.push({});
+}
