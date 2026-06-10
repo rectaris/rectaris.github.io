@@ -1,40 +1,61 @@
 # AGENTS.md
 
-This file is the agent-only operations memo for the `rectaris.github.io` repository.
+Agent entrypoint for `rectaris.github.io`.
 
-## Repository Role
+## Purpose
 
-- This repository is the public portal for the workspace.
-- It is not the main implementation home of `gakumasu-timeline`.
-- It should link to tools, not absorb unrelated application logic by default.
+Public portal for the workspace. Link to tools and systems while maintaining public access, SEO, and stable GitHub Pages paths.
 
-## Top Priorities
+## Generated Profile
 
-- Keep the portal simple, clear, and easy to navigate.
-- Preserve public access to linked tools.
-- Avoid portal changes that create duplicated ownership of application behavior already defined in another repository.
+- Project name: `rectaris.github.io`
+- Primary language: `docs`
+- Planning style: `active_backlog_checked`
+- Codex helper agents: `true`
+- Codex hooks: `true`
+- Plan lifecycle scripts: `true`
+- Change-aware validation: `true`
+- Static security checks: `true`
+- Structure scanner: `true`
+- External service policies: MCP=`false`, Linear=`false`, graph memory=`false`
 
-## Rules
+## Priority
+
+1. Follow parent workspace `AGENTS.md` and `GEMINI.md` first for cross-repository coordination, security, and Git policy.
+2. Follow this file for repository-local behavior.
+3. Open `docs/agent/spec-index.yaml`.
+4. Read only `default_reads` plus the matched route's `required` docs before editing.
+5. Add `conditional` docs only when the task or touched files match.
+
+## Operating Rules
+
+- Keep project-specific implementation rules in `docs/agent/SPEC_*.md` or existing domain docs.
+- Track non-trivial implementation work in `docs/plan/plan.md` or `docs/plan/active/`.
+- Keep Copier-managed workflow files updateable; put portal-specific details outside generated files when practical.
+- Use Git for every coherent work unit.
+- Preserve user changes you did not make.
+- Prefer deterministic checks over prose-only rules.
+- Ask before high-impact or ambiguous public-path changes.
+- Treat `docs/plan/checked.md` and checked archives as lookup-only history; search metadata first when possible.
+- Keep human-facing README files separate from agent-facing operational policy.
+
+## Portal Rules
 
 - Prefer links over duplicated embedded implementations.
-- If the portal text describes a linked tool, keep the description short and stable.
-- When adding a new tool link, also update the parent workspace `projects.md` and `routing.md`.
-- If a linked tool URL changes, update the portal and verify the target.
+- Keep linked tool descriptions short and stable.
+- Do not absorb unrelated application logic from linked repositories by default.
+- Update `projects.md` and `routing.md` when adding or changing tool links if those files exist in scope.
+- Verify both portal links and targets when a public URL changes.
 
-## Changes That Require Extra Care
+## Cascade Agent Handoff
 
-- Public link updates
-- GitHub Pages root behavior
-- AdSense / review / verification code on the portal
-- Visual changes that affect discoverability of linked tools
+- Tier 1: Codex CLI for static site structure and integration.
+- Tier 2: GitHub Copilot CLI for link checks and minor UI tweaks.
+- Tier 3: Gemini CLI for Cloudflare Pages deployment and final QA.
+- Handoff documentation: `docs/plan/handoff-latest.md` or `docs/plan/handoffs/`.
 
-## Documentation
+## Reports
 
-- Human-facing explanations belong in this repository's `README.md` or `docs/`.
-- Do not use portal docs as a replacement for tool-specific docs.
-
-## Verification
-
-- Confirm the portal loads publicly.
-- Confirm every visible external or internal tool link works.
-- Confirm mobile layout still exposes the important links clearly.
+- State touched repositories.
+- State link or public-path changes.
+- Report validation run and commit status.

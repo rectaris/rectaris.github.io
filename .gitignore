@@ -1,0 +1,13 @@
+.DS_Store
+*.pyc
+__pycache__/
+.pytest_cache/
+.venv/
+.venv-*/
+.uv-cache/
+.uv-home/
+.uv-tools/
+node_modules/
+dist/
+coverage/
+tmp/
