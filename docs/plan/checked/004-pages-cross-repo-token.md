@@ -41,3 +41,17 @@ Failure evidence:
 - `actions/checkout@v4` cannot determine the default branch for `rectaris/supportcard-status`.
 - GitHub API returns `Not Found` for `rectaris/supportcard-status` when using the workflow token.
 - Root cause: the `rectaris.github.io` workflow `GITHUB_TOKEN` does not have read access to the sibling private repository.
+
+## Completion
+
+- Commit: `8227d16` (`Use read token for Pages cross-repo checkout`)
+- Public path changes: none.
+- Required GitHub secret: `CROSS_REPO_READ_TOKEN`
+- Validation:
+  - `git diff --check`
+  - `python3 scripts/lint-plan-docs.py`
+  - `python3 scripts/format-plan-docs.py --check`
+  - `python3 scripts/security-static-check.py`
+  - `python3 scripts/structure-map.py --check`
+  - `python3 scripts/validate-changes.py --all`
+- Residual risk: GitHub Actions deployment was not rerun locally; repository or environment secret setup must exist on GitHub.
