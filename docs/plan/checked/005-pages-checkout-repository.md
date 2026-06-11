@@ -40,3 +40,18 @@ Failure evidence:
 
 - The current workflow stops at `Verify cross-repository token` because `CROSS_REPO_READ_TOKEN` is not configured.
 - The local `supportcard-status` sibling repository points to GitHub repository `rectaris/calc-sapo`, not `rectaris/supportcard-status`.
+
+## Completion
+
+- Commit: `bf38648` (`Fix Pages support checkout target`)
+- Public path changes: none.
+- Checkout target change: `rectaris/supportcard-status` -> `rectaris/calc-sapo`
+- Token behavior: `CROSS_REPO_READ_TOKEN` is optional and falls back to `github.token`.
+- Validation:
+  - `git diff --check`
+  - `python3 scripts/lint-plan-docs.py`
+  - `python3 scripts/format-plan-docs.py --check`
+  - `python3 scripts/security-static-check.py`
+  - `python3 scripts/structure-map.py --check`
+  - `python3 scripts/validate-changes.py --all`
+- Residual risk: GitHub Actions deployment was not rerun locally.
