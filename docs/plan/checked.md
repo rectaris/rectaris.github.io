@@ -9,3 +9,4 @@ id	path
 006	docs/plan/checked/006-pages-private-checkout-token.md
 007	docs/plan/checked/007-supportcard-status-cloudflare-link.md
 008	docs/plan/checked/008-portal-review-fixes.md
+009	docs/plan/checked/009-portal-tool-accordion.md

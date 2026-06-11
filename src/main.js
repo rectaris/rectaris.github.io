@@ -72,59 +72,68 @@ function renderGuideSteps(steps) {
 
 function renderToolSection(tool) {
   return `
-      <section class="section-card portal-grid">
-        <article class="tool-card">
-          <span class="tool-label">${tool.label}</span>
-          <h2 class="tool-title">${tool.title}</h2>
-          <p class="tool-description">
-            ${tool.description.join("\n            ")}
-          </p>
-          <a
-            class="button-link button-link--primary"
-            href="${tool.url}"
-          >
-            ページへ移動
-          </a>
-        </article>
-
-        <aside class="meta-card">
-          <div>
-            <p class="meta-label">公開 URL</p>
-            <p class="meta-value meta-url">
-              <a href="${tool.url}">${tool.url}</a>
+      <details class="section-card tool-disclosure">
+        <summary class="tool-summary">
+          <span class="tool-summary__text">
+            <span class="tool-summary__label">${tool.label}</span>
+            <span class="tool-summary__title">${tool.title}</span>
+          </span>
+          <span class="tool-summary__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="portal-grid tool-details">
+          <article class="tool-card">
+            <span class="tool-label">${tool.label}</span>
+            <h2 class="tool-title">${tool.title}</h2>
+            <p class="tool-description">
+              ${tool.description.join("\n              ")}
             </p>
-            <button
-              class="copy-link-button"
-              type="button"
-              data-copy-url="${tool.url}"
+            <a
+              class="button-link button-link--primary"
+              href="${tool.url}"
             >
-              リンクをコピー
-            </button>
-          </div>
-          <div>
-            <p class="meta-label">配信元</p>
-            <p class="meta-value">${tool.host}</p>
-          </div>
-          <div>
-            <p class="meta-label">用途</p>
-            <p class="meta-value">
-              ${tool.usage}
-            </p>
-          </div>
-          <details class="guide-disclosure">
-            <summary class="guide-summary">
-              <span class="guide-summary__text">
-                <span class="guide-summary__eyebrow">${tool.guideEyebrow}</span>
-                <span class="guide-summary__title">${tool.guideTitle}</span>
-              </span>
-              <span class="guide-summary__icon" aria-hidden="true"></span>
-            </summary>
-            <ol class="guide-list">
-              ${renderGuideSteps(tool.guideSteps)}
-            </ol>
-          </details>
-        </aside>
-      </section>
+              ページへ移動
+            </a>
+          </article>
+
+          <aside class="meta-card">
+            <div>
+              <p class="meta-label">公開 URL</p>
+              <p class="meta-value meta-url">
+                <a href="${tool.url}">${tool.url}</a>
+              </p>
+              <button
+                class="copy-link-button"
+                type="button"
+                data-copy-url="${tool.url}"
+              >
+                リンクをコピー
+              </button>
+            </div>
+            <div>
+              <p class="meta-label">配信元</p>
+              <p class="meta-value">${tool.host}</p>
+            </div>
+            <div>
+              <p class="meta-label">用途</p>
+              <p class="meta-value">
+                ${tool.usage}
+              </p>
+            </div>
+            <details class="guide-disclosure">
+              <summary class="guide-summary">
+                <span class="guide-summary__text">
+                  <span class="guide-summary__eyebrow">${tool.guideEyebrow}</span>
+                  <span class="guide-summary__title">${tool.guideTitle}</span>
+                </span>
+                <span class="guide-summary__icon" aria-hidden="true"></span>
+              </summary>
+              <ol class="guide-list">
+                ${renderGuideSteps(tool.guideSteps)}
+              </ol>
+            </details>
+          </aside>
+        </div>
+      </details>
   `;
 }
 
