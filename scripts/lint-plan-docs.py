@@ -4,19 +4,10 @@
 from __future__ import annotations
 
 import argparse
-import re
 import sys
 from pathlib import Path
 
 import planlib
-
-
-ROOT = Path.cwd()
-PLAN = ROOT / "docs/plan/plan.md"
-CHECKED = ROOT / "docs/plan/checked.md"
-PLAN_DIRS = [ROOT / "docs/plan/active", ROOT / "docs/plan/backlog", ROOT / "docs/plan/checked"]
-HUMAN_DESIGN_VALUES = {"yes", "no"}
-HUMAN_APPROVAL_VALUES = {"not_required", "pending", "approved"}
 
 
 def fail(message: str) -> None:
@@ -33,67 +24,23 @@ def next_id() -> str:
 
 
 def lint_plan_index() -> None:
-    if not PLAN.is_file():
-        fail("missing docs/plan/plan.md")
-    text = PLAN.read_text(encoding="utf-8")
-    if not text.startswith("# Active Plan\n"):
-        fail("docs/plan/plan.md must start with '# Active Plan'")
-    if "No active development items." in text:
-        return
-    if "id\tpath\tstatus" not in text:
-        fail("active plan index must contain TSV header: id path status")
-    for line in text.splitlines():
-        if re.match(r"^\d{3}\t", line):
-            parts = line.split("\t")
-            if len(parts) != 3:
-                fail(f"bad active index row: {line}")
-            if not (ROOT / parts[1]).is_file():
-                fail(f"active index points to missing file: {parts[1]}")
+    for error in planlib.validate_active_index():
+        fail(error)
 
 
 def lint_checked_index() -> None:
-    if not CHECKED.is_file():
-        fail("missing docs/plan/checked.md")
-    text = CHECKED.read_text(encoding="utf-8")
-    if not text.startswith("# Checked Plan Index\n"):
-        fail("docs/plan/checked.md must start with '# Checked Plan Index'")
-    if "id\tpath" not in text:
-        fail("checked index must contain TSV header: id path")
-    for line in text.splitlines():
-        if re.match(r"^\d{3}\t", line):
-            parts = line.split("\t")
-            if len(parts) != 2:
-                fail(f"bad checked index row: {line}")
-            if not (ROOT / parts[1]).is_file():
-                fail(f"checked index points to missing file: {parts[1]}")
+    for error in planlib.validate_checked_index():
+        fail(error)
 
 
 def lint_manifest(path: Path) -> None:
-    try:
-        values = planlib.require_manifest_fields(path)
-    except planlib.PlanError as exc:
-        fail(str(exc))
-    review_value = planlib.manifest_scalar(values, "review_class")
-    if review_value not in {"A", "B", "C"}:
-        fail(f"{path} review_class must be A, B, or C")
-    design_value = planlib.manifest_scalar(values, "human_design_required")
-    if design_value not in HUMAN_DESIGN_VALUES:
-        fail(f"{path} human_design_required must be yes or no")
-    approval_value = planlib.manifest_scalar(values, "human_approval_status")
-    if approval_value not in HUMAN_APPROVAL_VALUES:
-        fail(f"{path} human_approval_status must be not_required, pending, or approved")
-    if review_value == "C" and approval_value != "approved":
-        fail(f"{path} class C work requires human_approval_status: approved before implementation")
-    if not planlib.manifest_scalar(values, "checked_summary_ja").strip():
-        fail(f"{path} checked_summary_ja must be non-empty")
+    for error in planlib.validate_manifest(path):
+        fail(error)
 
 
 def lint_manifests() -> None:
-    for directory in (ROOT / "docs/plan/active", ROOT / "docs/plan/backlog"):
-        if not directory.exists():
-            continue
-        for path in sorted(directory.glob("[0-9][0-9][0-9]-*.md")):
-            lint_manifest(path)
+    for path in planlib.active_plan_paths():
+        lint_manifest(path)
 
 
 def main() -> int:

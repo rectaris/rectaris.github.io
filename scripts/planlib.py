@@ -10,6 +10,11 @@ ROOT = Path.cwd()
 PLAN = ROOT / "docs/plan/plan.md"
 CHECKED = ROOT / "docs/plan/checked.md"
 PLAN_DIRS = [ROOT / "docs/plan/active", ROOT / "docs/plan/backlog", ROOT / "docs/plan/checked"]
+ACTIVE_PLAN_DIRS = [ROOT / "docs/plan/active", ROOT / "docs/plan/backlog"]
+ACTIVE_INDEX_HEADER = "id\tpath\tstatus"
+CHECKED_INDEX_HEADER = "id\tpath"
+HUMAN_DESIGN_VALUES = {"yes", "no"}
+HUMAN_APPROVAL_VALUES = {"not_required", "pending", "approved"}
 
 REQUIRED_FIELDS = (
     "status",
@@ -144,6 +149,78 @@ def next_id() -> str:
     while value in ids:
         value += 1
     return f"{value:03d}"
+
+
+def validate_active_index() -> list[str]:
+    if not PLAN.is_file():
+        return ["missing docs/plan/plan.md"]
+    text = PLAN.read_text(encoding="utf-8")
+    errors: list[str] = []
+    if not text.startswith("# Active Plan\n"):
+        errors.append("docs/plan/plan.md must start with '# Active Plan'")
+    if "No active development items." in text:
+        return errors
+    if ACTIVE_INDEX_HEADER not in text:
+        errors.append("active plan index must contain TSV header: id path status")
+    for line in text.splitlines():
+        if re.match(r"^\d{3}\t", line):
+            parts = line.split("\t")
+            if len(parts) != 3:
+                errors.append(f"bad active index row: {line}")
+            elif not (ROOT / parts[1]).is_file():
+                errors.append(f"active index points to missing file: {parts[1]}")
+    return errors
+
+
+def validate_checked_index() -> list[str]:
+    if not CHECKED.is_file():
+        return ["missing docs/plan/checked.md"]
+    text = CHECKED.read_text(encoding="utf-8")
+    errors: list[str] = []
+    if not text.startswith("# Checked Plan Index\n"):
+        errors.append("docs/plan/checked.md must start with '# Checked Plan Index'")
+    if CHECKED_INDEX_HEADER not in text:
+        errors.append("checked index must contain TSV header: id path")
+    for line in text.splitlines():
+        if re.match(r"^\d{3}\t", line):
+            parts = line.split("\t")
+            if len(parts) != 2:
+                errors.append(f"bad checked index row: {line}")
+            elif not (ROOT / parts[1]).is_file():
+                errors.append(f"checked index points to missing file: {parts[1]}")
+    return errors
+
+
+def validate_manifest(path: Path) -> list[str]:
+    try:
+        values = require_manifest_fields(path)
+    except PlanError as exc:
+        return [str(exc)]
+
+    errors: list[str] = []
+    review_value = manifest_scalar(values, "review_class")
+    design_value = manifest_scalar(values, "human_design_required")
+    approval_value = manifest_scalar(values, "human_approval_status")
+
+    if review_value not in {"A", "B", "C"}:
+        errors.append(f"{path} review_class must be A, B, or C")
+    if design_value not in HUMAN_DESIGN_VALUES:
+        errors.append(f"{path} human_design_required must be yes or no")
+    if approval_value not in HUMAN_APPROVAL_VALUES:
+        errors.append(f"{path} human_approval_status must be not_required, pending, or approved")
+    if review_value == "C" and approval_value != "approved":
+        errors.append(f"{path} class C work requires human_approval_status: approved before implementation")
+    if not manifest_scalar(values, "checked_summary_ja").strip():
+        errors.append(f"{path} checked_summary_ja must be non-empty")
+    return errors
+
+
+def active_plan_paths() -> list[Path]:
+    paths: list[Path] = []
+    for directory in ACTIVE_PLAN_DIRS:
+        if directory.exists():
+            paths.extend(sorted(directory.glob("[0-9][0-9][0-9]-*.md")))
+    return paths
 
 
 def read_active_rows() -> list[tuple[str, str, str]]:

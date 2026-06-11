@@ -8,6 +8,7 @@ import shlex
 import subprocess
 import sys
 from pathlib import Path
+from typing import Callable
 
 try:
     import tomllib
@@ -16,6 +17,9 @@ except ModuleNotFoundError:  # pragma: no cover - compatibility for Python < 3.1
 
 
 ROOT = Path.cwd()
+Command = list[str]
+Predicate = Callable[[list[str]], bool]
+CommandFactory = Callable[[list[str]], list[Command]]
 
 
 def git(args: list[str]) -> list[str]:
@@ -39,23 +43,70 @@ def existing(path: str) -> bool:
     return (ROOT / path).exists()
 
 
-def select_commands(paths: list[str]) -> list[list[str]]:
-    commands: list[list[str]] = [["git", "diff", "--check"]]
-    if any(path.endswith(".sh") for path in paths):
-        for path in paths:
-            if path.endswith(".sh") and existing(path):
-                commands.append(["sh", "-n", path])
+def touches_shell(paths: list[str]) -> bool:
+    return any(path.endswith(".sh") for path in paths)
+
+
+def shell_syntax_commands(paths: list[str]) -> list[Command]:
+    return [["sh", "-n", path] for path in paths if path.endswith(".sh") and existing(path)]
+
+
+def python_compile_commands(paths: list[str]) -> list[Command]:
     py_files = [path for path in paths if path.endswith(".py") and existing(path)]
-    if py_files:
-        commands.append(["python3", "-m", "py_compile", *py_files])
-    if any(path.startswith("docs/plan/") or path.startswith("scripts/") for path in paths) and existing("scripts/lint-plan-docs.py"):
-        commands.append(["python3", "scripts/lint-plan-docs.py"])
-    if any(path.startswith("docs/plan/") for path in paths) and existing("scripts/format-plan-docs.py"):
-        commands.append(["python3", "scripts/format-plan-docs.py", "--check"])
-    if any(path.startswith(".github/") or path.startswith("scripts/") for path in paths) and existing("scripts/security-static-check.py"):
-        commands.append(["python3", "scripts/security-static-check.py"])
-    if any(path in {"AGENTS.md", "docs/agent/spec-index.yaml"} or path.startswith("docs/agent/") for path in paths) and existing("scripts/structure-map.py"):
-        commands.append(["python3", "scripts/structure-map.py", "--check"])
+    if not py_files:
+        return []
+    return [["python3", "-m", "py_compile", *py_files]]
+
+
+def touches_plan_or_scripts(paths: list[str]) -> bool:
+    return any(path.startswith("docs/plan/") or path.startswith("scripts/") for path in paths)
+
+
+def touches_plan(paths: list[str]) -> bool:
+    return any(path.startswith("docs/plan/") for path in paths)
+
+
+def touches_github_or_scripts(paths: list[str]) -> bool:
+    return any(path.startswith(".github/") or path.startswith("scripts/") for path in paths)
+
+
+def touches_agent_docs(paths: list[str]) -> bool:
+    return any(path in {"AGENTS.md", "docs/agent/spec-index.yaml"} or path.startswith("docs/agent/") for path in paths)
+
+
+VALIDATION_RULES: tuple[tuple[Predicate, str, CommandFactory], ...] = (
+    (touches_shell, "", shell_syntax_commands),
+    (lambda paths: bool(python_compile_commands(paths)), "", python_compile_commands),
+    (
+        touches_plan_or_scripts,
+        "scripts/lint-plan-docs.py",
+        lambda paths: [["python3", "scripts/lint-plan-docs.py"]],
+    ),
+    (
+        touches_plan,
+        "scripts/format-plan-docs.py",
+        lambda paths: [["python3", "scripts/format-plan-docs.py", "--check"]],
+    ),
+    (
+        touches_github_or_scripts,
+        "scripts/security-static-check.py",
+        lambda paths: [["python3", "scripts/security-static-check.py"]],
+    ),
+    (
+        touches_agent_docs,
+        "scripts/structure-map.py",
+        lambda paths: [["python3", "scripts/structure-map.py", "--check"]],
+    ),
+)
+
+
+def select_commands(paths: list[str]) -> list[Command]:
+    commands: list[Command] = [["git", "diff", "--check"]]
+    for predicate, required_path, factory in VALIDATION_RULES:
+        if required_path and not existing(required_path):
+            continue
+        if predicate(paths):
+            commands.extend(factory(paths))
     return commands
 
 
