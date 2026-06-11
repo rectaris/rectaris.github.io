@@ -130,9 +130,7 @@ function renderToolSection(tool) {
 
 app.innerHTML = `
   <header class="app-header">
-    <span class="header-chip" aria-hidden="true">入口</span>
     <h1 class="app-title">学マス関連ポータル</h1>
-    <span class="header-chip" aria-hidden="true">Web</span>
   </header>
 
   <main class="page-shell">
