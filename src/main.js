@@ -26,7 +26,7 @@ const tools = [
   },
   {
     title: "supportcard-status",
-    url: "https://rectaris.github.io/status/",
+    url: "https://supportcard-status-calculate.curiretas.workers.dev/",
     description: [
       "学マスのサポートカードの編成をシミュレーションし、最終的なステータス上昇値を算出する計算ツールです。",
       "カードのアビリティやイベント発動を考慮した精密な計算を、ブラウザ上で即座に行えます。",

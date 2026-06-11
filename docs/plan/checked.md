@@ -7,3 +7,4 @@ id	path
 004	docs/plan/checked/004-pages-cross-repo-token.md
 005	docs/plan/checked/005-pages-checkout-repository.md
 006	docs/plan/checked/006-pages-private-checkout-token.md
+007	docs/plan/checked/007-supportcard-status-cloudflare-link.md

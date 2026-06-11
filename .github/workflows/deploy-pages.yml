@@ -17,71 +17,17 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
     steps:
       - name: Checkout portal
         uses: actions/checkout@v4
         with:
           path: portal
 
-      - name: Verify cross-repository access
-        env:
-          CROSS_REPO_READ_TOKEN: ${{ secrets.CROSS_REPO_READ_TOKEN }}
-        run: |
-          set -eu
-
-          check_repo_access() {
-            repo="$1"
-            url="https://api.github.com/repos/$repo"
-
-            if [ -n "${CROSS_REPO_READ_TOKEN:-}" ]; then
-              token_status=$(curl -sS -o /dev/null -w "%{http_code}" \
-                -H "Accept: application/vnd.github+json" \
-                -H "Authorization: Bearer $CROSS_REPO_READ_TOKEN" \
-                -H "X-GitHub-Api-Version: 2022-11-28" \
-                "$url" || true)
-
-              if [ "$token_status" != "200" ]; then
-                echo "::error title=Invalid CROSS_REPO_READ_TOKEN::$repo returned HTTP $token_status. The token must have Contents: read access to this repository."
-                exit 1
-              fi
-
-              echo "$repo is readable with CROSS_REPO_READ_TOKEN."
-              return
-            fi
-
-            public_status=$(curl -sS -o /dev/null -w "%{http_code}" \
-              -H "Accept: application/vnd.github+json" \
-              -H "X-GitHub-Api-Version: 2022-11-28" \
-              "$url" || true)
-
-            if [ "$public_status" = "200" ]; then
-              echo "$repo is publicly readable."
-              return
-            fi
-
-            echo "::error title=Missing CROSS_REPO_READ_TOKEN::$repo is not publicly readable from this workflow. Configure CROSS_REPO_READ_TOKEN as a repository secret or as a github-pages environment secret with Contents: read access."
-            exit 1
-          }
-
-          check_repo_access rectaris/gakumasu-timeline
-          check_repo_access rectaris/calc-sapo
-
       - name: Checkout gakumasu-timeline
         uses: actions/checkout@v4
         with:
           repository: rectaris/gakumasu-timeline
           path: gakumasu-timeline
-          token: ${{ secrets.CROSS_REPO_READ_TOKEN || github.token }}
-          persist-credentials: false
-
-      - name: Checkout supportcard-status
-        uses: actions/checkout@v4
-        with:
-          repository: rectaris/calc-sapo
-          path: supportcard-status
-          token: ${{ secrets.CROSS_REPO_READ_TOKEN || github.token }}
           persist-credentials: false
 
       - name: Setup Node.js
@@ -95,19 +41,12 @@ jobs:
           npm ci
           npm run build
 
-      - name: Build supportcard-status
-        working-directory: supportcard-status
-        run: |
-          npm ci
-          npm run build -- --base=/status/
-
       - name: Assemble Pages artifact
         run: |
-          mkdir -p public/gakumasu-timeline public/status
+          mkdir -p public/gakumasu-timeline
           cp portal/index.html public/
           cp -R portal/src public/src
           cp -R gakumasu-timeline/dist/. public/gakumasu-timeline/
-          cp -R supportcard-status/dist/. public/status/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
