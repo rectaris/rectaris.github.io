@@ -28,9 +28,11 @@ MCP、Linear、graph memory は任意機能です。現在の有効化状態と�
 
 `.github/workflows/deploy-pages.yml` は、このポータルに加えて `gakumasu-timeline` と `supportcard-status` を checkout して GitHub Pages 用の成果物を作成します。
 
-別リポジトリが private の場合、`GITHUB_TOKEN` だけでは checkout できません。リポジトリまたは environment secret に `CROSS_REPO_READ_TOKEN` を登録してください。
+`supportcard-status` の checkout 先は GitHub 上の `rectaris/calc-sapo` です。
 
-- 必要権限: `rectaris/gakumasu-timeline` と `rectaris/supportcard-status` の `Contents: read`
+別リポジトリが private の場合だけ、`GITHUB_TOKEN` では checkout できないため、リポジトリまたは environment secret に `CROSS_REPO_READ_TOKEN` を登録してください。public repo として読める場合、この secret は不要です。
+
+- 必要権限: `rectaris/gakumasu-timeline` と `rectaris/calc-sapo` の `Contents: read`
 - 推奨: fine-grained personal access token または同等の read-only token
 
 ## テンプレート更新

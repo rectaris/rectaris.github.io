@@ -7,6 +7,7 @@ Keep secrets out of repository files. Use environment variables or the platform 
 ## GitHub Pages Deployment
 
 - `.github/workflows/deploy-pages.yml` builds a single Pages artifact from this portal plus sibling repositories.
-- External repository checkouts require the `CROSS_REPO_READ_TOKEN` GitHub secret.
-- The token must have read-only contents access to `rectaris/gakumasu-timeline` and `rectaris/supportcard-status`.
-- Do not replace this with the default `GITHUB_TOKEN` unless those repositories are public or explicitly accessible to this workflow token.
+- The support card checkout target is `rectaris/calc-sapo`, mounted locally as `supportcard-status`.
+- External repository checkouts use `CROSS_REPO_READ_TOKEN` when configured, otherwise they fall back to `github.token`.
+- `CROSS_REPO_READ_TOKEN` is required only when `rectaris/gakumasu-timeline` or `rectaris/calc-sapo` cannot be read with the default workflow token.
+- If configured, the token must have read-only contents access to those repositories.
