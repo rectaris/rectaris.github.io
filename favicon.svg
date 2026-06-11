@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="学">
+  <style>
+    .mark {
+      fill: rgba(255, 160, 140, 0.40);
+      stroke: rgba(255, 160, 140, 0.40);
+      stroke-width: 4;
+    }
+
+    .glyph {
+      fill: #8f3a2a;
+      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      dominant-baseline: central;
+      text-anchor: middle;
+    }
+  </style>
+  <circle class="mark" cx="32" cy="32" r="28" />
+  <text class="glyph" x="32" y="34">学</text>
+</svg>

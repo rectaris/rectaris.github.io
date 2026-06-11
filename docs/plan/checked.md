@@ -10,3 +10,4 @@ id	path
 007	docs/plan/checked/007-supportcard-status-cloudflare-link.md
 008	docs/plan/checked/008-portal-review-fixes.md
 009	docs/plan/checked/009-portal-tool-accordion.md
+010	docs/plan/checked/010-portal-title-favicon.md
