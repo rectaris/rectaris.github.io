@@ -14,14 +14,15 @@
   --border-soft: #f0e1db;
   --text-primary: #333333;
   --text-secondary: #5c5552;
-  --text-muted: #7a726f;
+  --text-muted: #645d5a;
   --accent-text: #b54d33;
   --accent-text-strong: #ffb39f;
   --accent-glow: rgba(255, 160, 140, 0.28);
   --accent-glow-transparent: rgba(255, 160, 140, 0);
   --accent-soft: rgba(255, 160, 140, 0.18);
   --button-bg: #ffffff;
-  --button-bg-strong: #1a1a1a;
+  --button-bg-strong: #9b3f2b;
+  --button-bg-strong-hover: #87331f;
   --button-text: #1a1a1a;
   --button-text-inverse: #ffffff;
   --header-bg: #ffa08c;
@@ -47,7 +48,8 @@
     --text-secondary: #c7d0d9;
     --text-muted: #aeb7c0;
     --button-bg: #232931;
-    --button-bg-strong: #2c333c;
+    --button-bg-strong: #a9523f;
+    --button-bg-strong-hover: #bd6754;
     --button-text: #edf2f7;
     --button-text-inverse: #edf2f7;
     --header-bg: #4c3a35;
@@ -63,12 +65,14 @@
 
 html {
   min-height: 100%;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: clip;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   background:
@@ -82,8 +86,40 @@ a {
   text-decoration: none;
 }
 
+button {
+  font: inherit;
+}
+
 #app {
   min-height: 100vh;
+}
+
+.noscript-fallback {
+  width: min(760px, calc(100% - 32px));
+  margin: 32px auto;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.noscript-fallback h1 {
+  margin: 0 0 12px;
+  font-size: 24px;
+}
+
+.noscript-fallback p,
+.noscript-fallback li {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.noscript-fallback a {
+  color: var(--accent-text);
+  font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
 /* Header */
@@ -227,6 +263,18 @@ a {
   box-shadow: 0 10px 18px var(--shadow);
 }
 
+.button-link--primary:hover,
+.button-link--primary:focus-visible {
+  background: var(--button-bg-strong-hover);
+}
+
+.button-link:focus-visible,
+.copy-link-button:focus-visible,
+.guide-summary:focus-visible {
+  outline: 3px solid rgba(181, 77, 51, 0.32);
+  outline-offset: 3px;
+}
+
 /* Tool sections */
 
 .sections {
@@ -239,8 +287,8 @@ a {
   padding: 22px;
   border: 1px solid var(--border);
   border-radius: 18px;
-  background: var(--surface-elevated);
-  box-shadow: 0 8px 24px var(--shadow);
+  background: linear-gradient(145deg, var(--surface-card-start), var(--surface-card-end));
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .portal-grid {
@@ -253,10 +301,7 @@ a {
 .tool-card {
   display: grid;
   gap: 14px;
-  padding: 18px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: linear-gradient(145deg, var(--surface-card-start), var(--surface-card-end));
+  padding: 4px 0;
   align-self: start;
 }
 
@@ -289,10 +334,8 @@ a {
   display: grid;
   gap: 14px;
   align-content: start;
-  padding: 18px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--surface-meta);
+  padding: 4px 0 4px 18px;
+  border-left: 1px solid var(--border-soft);
   align-self: start;
 }
 
@@ -309,10 +352,33 @@ a {
   font-size: 15px;
   line-height: 1.7;
   color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.meta-url a {
+  text-decoration: underline;
+  text-decoration-color: rgba(181, 77, 51, 0.42);
+  text-underline-offset: 3px;
+}
+
+.copy-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  margin-top: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .guide-disclosure {
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-soft);
   border-radius: 14px;
   background: var(--surface);
   overflow: hidden;
@@ -320,6 +386,8 @@ a {
 
 .guide-summary {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) 18px;
+  align-items: center;
   gap: 4px;
   padding: 14px 16px;
   cursor: pointer;
@@ -330,17 +398,22 @@ a {
   display: none;
 }
 
-.guide-summary::after {
-  content: "開く";
-  justify-self: end;
-  margin-top: 4px;
-  color: var(--text-muted);
-  font-size: 12px;
-  font-weight: 700;
+.guide-summary__text {
+  display: grid;
+  gap: 4px;
 }
 
-.guide-disclosure[open] .guide-summary::after {
-  content: "閉じる";
+.guide-summary__icon {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: rotate(45deg);
+  transition: transform 0.18s ease;
+}
+
+.guide-disclosure[open] .guide-summary__icon {
+  transform: rotate(225deg);
 }
 
 .guide-summary__eyebrow {
@@ -373,7 +446,7 @@ a {
 
 .footer-note {
   margin: 18px 4px 0;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.7;
   color: var(--text-muted);
 }
@@ -387,6 +460,7 @@ a {
   border-radius: 18px;
   background: var(--surface-elevated);
   box-shadow: 0 8px 24px var(--shadow);
+  overflow: hidden;
 }
 
 .portal-ad-section__label {
@@ -399,6 +473,11 @@ a {
 
 .portal-ad-section__unit {
   min-height: 120px;
+  max-width: 100%;
+}
+
+.portal-ad-section--empty {
+  display: none;
 }
 
 /* Responsive */
@@ -416,6 +495,12 @@ a {
 
   .portal-grid {
     grid-template-columns: 1fr;
+  }
+
+  .meta-card {
+    padding: 18px 0 0;
+    border-top: 1px solid var(--border-soft);
+    border-left: 0;
   }
 }
 

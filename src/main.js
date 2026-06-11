@@ -10,7 +10,9 @@ if (!app) {
 const tools = [
   {
     title: "gakumasu-timeline",
+    label: "年表アプリ",
     url: "https://rectaris.github.io/gakumasu-timeline/",
+    host: "GitHub Pages",
     description: [
       "学マスのコミュや出来事を、時間軸の上で俯瞰しながら確認できる年表アプリです。",
       "表示期間とレーン密度を調整しながら、見たい対象をレーン単位で絞り込んで確認できます。",
@@ -26,7 +28,9 @@ const tools = [
   },
   {
     title: "supportcard-status",
+    label: "計算ツール",
     url: "https://supportcard-status-calculate.curiretas.workers.dev/",
+    host: "Cloudflare Workers",
     description: [
       "学マスのサポートカードの編成をシミュレーションし、最終的なステータス上昇値を算出する計算ツールです。",
       "カードのアビリティやイベント発動を考慮した精密な計算を、ブラウザ上で即座に行えます。",
@@ -70,7 +74,7 @@ function renderToolSection(tool) {
   return `
       <section class="section-card portal-grid">
         <article class="tool-card">
-          <span class="tool-label">公開中のツール</span>
+          <span class="tool-label">${tool.label}</span>
           <h2 class="tool-title">${tool.title}</h2>
           <p class="tool-description">
             ${tool.description.join("\n            ")}
@@ -86,7 +90,20 @@ function renderToolSection(tool) {
         <aside class="meta-card">
           <div>
             <p class="meta-label">公開 URL</p>
-            <p class="meta-value">${tool.url}</p>
+            <p class="meta-value meta-url">
+              <a href="${tool.url}">${tool.url}</a>
+            </p>
+            <button
+              class="copy-link-button"
+              type="button"
+              data-copy-url="${tool.url}"
+            >
+              リンクをコピー
+            </button>
+          </div>
+          <div>
+            <p class="meta-label">配信元</p>
+            <p class="meta-value">${tool.host}</p>
           </div>
           <div>
             <p class="meta-label">用途</p>
@@ -96,8 +113,11 @@ function renderToolSection(tool) {
           </div>
           <details class="guide-disclosure">
             <summary class="guide-summary">
-              <span class="guide-summary__eyebrow">${tool.guideEyebrow}</span>
-              <span class="guide-summary__title">${tool.guideTitle}</span>
+              <span class="guide-summary__text">
+                <span class="guide-summary__eyebrow">${tool.guideEyebrow}</span>
+                <span class="guide-summary__title">${tool.guideTitle}</span>
+              </span>
+              <span class="guide-summary__icon" aria-hidden="true"></span>
             </summary>
             <ol class="guide-list">
               ${renderGuideSteps(tool.guideSteps)}
@@ -130,6 +150,12 @@ app.innerHTML = `
         >
           gakumasu-timeline を開く
         </a>
+        <a
+          class="button-link button-link--primary"
+          href="https://supportcard-status-calculate.curiretas.workers.dev/"
+        >
+          supportcard-status を開く
+        </a>
         <a class="button-link" href="https://github.com/rectaris">
           GitHub Profile
         </a>
@@ -147,7 +173,47 @@ app.innerHTML = `
   </main>
 `;
 
+app.addEventListener("click", async (event) => {
+  const button = event.target?.closest?.("[data-copy-url]");
+
+  if (!button) {
+    return;
+  }
+
+  const url = button.dataset.copyUrl;
+  const defaultText = button.textContent.trim();
+
+  try {
+    await navigator.clipboard.writeText(url);
+    button.textContent = "コピー済み";
+    window.setTimeout(() => {
+      button.textContent = defaultText;
+    }, 1600);
+  } catch {
+    window.prompt("URLをコピーしてください", url);
+  }
+});
+
 if (PORTAL_FOOTER_AD_SLOT) {
-  window.adsbygoogle = window.adsbygoogle || [];
-  window.adsbygoogle.push({});
+  const adSection = document.querySelector(".portal-ad-section");
+  const adUnit = document.querySelector(".portal-ad-section__unit");
+
+  try {
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.push({});
+  } catch {
+    adSection?.classList.add("portal-ad-section--empty");
+  }
+
+  window.setTimeout(() => {
+    const status = adUnit?.getAttribute("data-ad-status");
+    const hasRenderedAd =
+      status === "filled" ||
+      Boolean(adUnit?.querySelector("iframe")) ||
+      Boolean(adUnit?.innerHTML.trim());
+
+    if (!hasRenderedAd || status === "unfilled") {
+      adSection?.classList.add("portal-ad-section--empty");
+    }
+  }, 4000);
 }
