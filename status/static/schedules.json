@@ -1,0 +1,902 @@
+{
+  "schedules": {
+    "初レギュラー": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 340,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 20,
+            "second": 20,
+            "third": 20
+          },
+          {
+            "name": "最終試験",
+            "first": 30,
+            "second": 30,
+            "third": 30
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 4,
+        "sp_lesson": 3,
+        "sp_lesson_after_midterm": 2,
+        "normal_lesson": 1,
+        "outing": 1,
+        "consult": 0,
+        "special_instruction": 0,
+        "skill_upgrade": 2,
+        "skill_custom": 0,
+        "lesson_and_business_end": 3,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 6,
+        "a_skill_get": 2,
+        "m_skill_get": 4,
+        "ssr_card_get": 4,
+        "genki_get": 2,
+        "kocho_get": 2,
+        "shuchu_get": 2
+      }
+    },
+    "初プロ": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 740,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 20,
+            "second": 20,
+            "third": 20
+          },
+          {
+            "name": "最終試験",
+            "first": 30,
+            "second": 30,
+            "third": 30
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 5,
+        "sp_lesson": 4,
+        "sp_lesson_after_midterm": 3,
+        "normal_lesson": 1,
+        "outing": 1,
+        "consult": 0,
+        "special_instruction": 0,
+        "skill_upgrade": 4,
+        "skill_custom": 0,
+        "lesson_and_business_end": 2,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 8,
+        "a_skill_get": 3,
+        "m_skill_get": 5,
+        "ssr_card_get": 5,
+        "genki_get": 3,
+        "kocho_get": 3,
+        "shuchu_get": 3
+      }
+    },
+    "初マスター": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 680,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 20,
+            "second": 20,
+            "third": 20
+          },
+          {
+            "name": "最終試験",
+            "first": 30,
+            "second": 30,
+            "third": 30
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 4,
+        "sp_lesson": 4,
+        "sp_lesson_after_midterm": 3,
+        "normal_lesson": 0,
+        "outing": 2,
+        "consult": 4,
+        "special_instruction": 0,
+        "skill_upgrade": 4,
+        "skill_custom": 0,
+        "lesson_and_business_end": 5,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 10,
+        "a_skill_get": 4,
+        "m_skill_get": 6,
+        "ssr_card_get": 6,
+        "genki_get": 4,
+        "kocho_get": 4,
+        "shuchu_get": 4
+      }
+    },
+    "初レジェンド": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 2300,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 80,
+            "second": 80,
+            "third": 80
+          },
+          {
+            "name": "最終試験",
+            "first": 120,
+            "second": 120,
+            "third": 120
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 5,
+        "sp_lesson": 0,
+        "sp_lesson_after_midterm": 3,
+        "normal_lesson": 0,
+        "legend_lesson": 5,
+        "outing": 0,
+        "consult": 2,
+        "special_instruction": 0,
+        "skill_upgrade": 5,
+        "skill_custom": 0,
+        "lesson_and_business_end": 4,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 12,
+        "a_skill_get": 5,
+        "m_skill_get": 7,
+        "ssr_card_get": 7,
+        "genki_get": 5,
+        "kocho_get": 5,
+        "shuchu_get": 5
+      }
+    },
+    "NIAプロ": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 1050,
+        "auditions": [
+          {
+            "name": "1次オーディション",
+            "first": 92,
+            "second": 76,
+            "third": 62
+          },
+          {
+            "name": "2次オーディション",
+            "first": 119,
+            "second": 98,
+            "third": 80
+          },
+          {
+            "name": "最終オーディション",
+            "first": 172,
+            "second": 142,
+            "third": 116
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 8,
+        "sp_lesson": 8,
+        "sp_lesson_after_midterm": 6,
+        "normal_lesson": 0,
+        "business": 7,
+        "outing": 5,
+        "consult": 2,
+        "special_instruction": 2,
+        "skill_upgrade": 4,
+        "skill_custom": 6,
+        "lesson_and_business_end": 7,
+        "rest": 0,
+        "audition_end": 3,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 11,
+        "a_skill_get": 4,
+        "m_skill_get": 7,
+        "ssr_card_get": 7,
+        "genki_get": 3,
+        "kocho_get": 5,
+        "shuchu_get": 4
+      }
+    },
+    "NIAマスター": {
+      "plan": "共通",
+      "bonus_scenario_item": 0.55,
+      "base_values": {
+        "lesson": 890,
+        "auditions": [
+          {
+            "name": "1次オーディション",
+            "first": 92,
+            "second": 76,
+            "third": 62
+          },
+          {
+            "name": "2次オーディション",
+            "first": 119,
+            "second": 98,
+            "third": 80
+          },
+          {
+            "name": "最終オーディション",
+            "first": 172,
+            "second": 142,
+            "third": 116
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 7,
+        "sp_lesson": 7,
+        "sp_lesson_after_midterm": 5,
+        "normal_lesson": 0,
+        "business": 7,
+        "outing": 4,
+        "consult": 2,
+        "special_instruction": 2,
+        "skill_upgrade": 4,
+        "skill_custom": 6,
+        "lesson_and_business_end": 14,
+        "rest": 0,
+        "audition_end": 3,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 11,
+        "a_skill_get": 4,
+        "m_skill_get": 7,
+        "ssr_card_get": 7,
+        "genki_get": 3,
+        "kocho_get": 5,
+        "shuchu_get": 4
+      }
+    },
+    "初マスター：通常（強化寄り）": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 680,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 20,
+            "second": 20,
+            "third": 20
+          },
+          {
+            "name": "最終試験",
+            "first": 30,
+            "second": 30,
+            "third": 30
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 2.0,
+        "sp_lesson": 4,
+        "normal_lesson": 0,
+        "outing": 0.0,
+        "consult": 3.0,
+        "special_instruction": 0.0,
+        "skill_upgrade": 4,
+        "skill_custom": 0,
+        "lesson_and_business_end": 5,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 10,
+        "a_skill_get": 4,
+        "m_skill_get": 6,
+        "ssr_card_get": 6,
+        "genki_get": 4,
+        "kocho_get": 4,
+        "shuchu_get": 4
+      }
+    },
+    "初マスター：通常（Pドリ寄り）": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 680,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 20,
+            "second": 20,
+            "third": 20
+          },
+          {
+            "name": "最終試験",
+            "first": 30,
+            "second": 30,
+            "third": 30
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 2.0,
+        "sp_lesson": 4,
+        "normal_lesson": 0,
+        "outing": 0.0,
+        "consult": 3.0,
+        "special_instruction": 0.0,
+        "skill_upgrade": 4,
+        "skill_custom": 0,
+        "lesson_and_business_end": 5,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 10,
+        "a_skill_get": 4,
+        "m_skill_get": 6,
+        "ssr_card_get": 6,
+        "genki_get": 4,
+        "kocho_get": 4,
+        "shuchu_get": 4
+      }
+    },
+    "初マスター：お休み": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 680,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 20,
+            "second": 20,
+            "third": 20
+          },
+          {
+            "name": "最終試験",
+            "first": 30,
+            "second": 30,
+            "third": 30
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 2.0,
+        "sp_lesson": 4,
+        "normal_lesson": 0,
+        "outing": 0.0,
+        "consult": 1.0,
+        "special_instruction": 0.0,
+        "skill_upgrade": 4,
+        "skill_custom": 0,
+        "lesson_and_business_end": 5,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 10,
+        "a_skill_get": 4,
+        "m_skill_get": 6,
+        "ssr_card_get": 6,
+        "genki_get": 4,
+        "kocho_get": 4,
+        "shuchu_get": 4
+      }
+    },
+    "初マスター：やる気圧縮": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 680,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 20,
+            "second": 20,
+            "third": 20
+          },
+          {
+            "name": "最終試験",
+            "first": 30,
+            "second": 30,
+            "third": 30
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 3.0,
+        "sp_lesson": 4,
+        "normal_lesson": 0,
+        "outing": 0.0,
+        "consult": 3.0,
+        "special_instruction": 0.0,
+        "skill_upgrade": 4,
+        "skill_custom": 0,
+        "lesson_and_business_end": 5,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 10,
+        "a_skill_get": 4,
+        "m_skill_get": 6,
+        "ssr_card_get": 6,
+        "genki_get": 4,
+        "kocho_get": 4,
+        "shuchu_get": 4
+      }
+    },
+    "初マスター：圧縮": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 680,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 20,
+            "second": 20,
+            "third": 20
+          },
+          {
+            "name": "最終試験",
+            "first": 30,
+            "second": 30,
+            "third": 30
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 3.0,
+        "sp_lesson": 4,
+        "normal_lesson": 0,
+        "outing": 0.0,
+        "consult": 4.0,
+        "special_instruction": 0.0,
+        "skill_upgrade": 4,
+        "skill_custom": 0,
+        "lesson_and_business_end": 5,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 10,
+        "a_skill_get": 4,
+        "m_skill_get": 6,
+        "ssr_card_get": 6,
+        "genki_get": 4,
+        "kocho_get": 4,
+        "shuchu_get": 4
+      }
+    },
+    "初マスター：S圧縮用": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 680,
+        "auditions": [
+          {
+            "name": "中間試験",
+            "first": 20,
+            "second": 20,
+            "third": 20
+          },
+          {
+            "name": "最終試験",
+            "first": 30,
+            "second": 30,
+            "third": 30
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 3.0,
+        "sp_lesson": 4,
+        "normal_lesson": 0,
+        "outing": 0.0,
+        "consult": 4.0,
+        "special_instruction": 0.0,
+        "skill_upgrade": 4,
+        "skill_custom": 0,
+        "lesson_and_business_end": 5,
+        "rest": 0,
+        "audition_end": 2,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 10,
+        "a_skill_get": 4,
+        "m_skill_get": 6,
+        "ssr_card_get": 6,
+        "genki_get": 4,
+        "kocho_get": 4,
+        "shuchu_get": 4
+      }
+    },
+    "NIAマスター：通常": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 890,
+        "auditions": [
+          {
+            "name": "1次オーディション",
+            "first": 92,
+            "second": 76,
+            "third": 62
+          },
+          {
+            "name": "2次オーディション",
+            "first": 119,
+            "second": 98,
+            "third": 80
+          },
+          {
+            "name": "最終オーディション",
+            "first": 172,
+            "second": 142,
+            "third": 116
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 4.0,
+        "sp_lesson": 7,
+        "normal_lesson": 0,
+        "business": 7,
+        "outing": 5.0,
+        "consult": 1.0,
+        "special_instruction": 2.0,
+        "skill_upgrade": 4,
+        "skill_custom": 6,
+        "lesson_and_business_end": 14,
+        "rest": 0,
+        "audition_end": 3,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 11,
+        "a_skill_get": 4,
+        "m_skill_get": 7,
+        "ssr_card_get": 7,
+        "genki_get": 3,
+        "kocho_get": 5,
+        "shuchu_get": 4
+      }
+    },
+    "NIAマスター：3A育成": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 890,
+        "auditions": [
+          {
+            "name": "1次オーディション",
+            "first": 92,
+            "second": 76,
+            "third": 62
+          },
+          {
+            "name": "2次オーディション",
+            "first": 119,
+            "second": 98,
+            "third": 80
+          },
+          {
+            "name": "最終オーディション",
+            "first": 172,
+            "second": 142,
+            "third": 116
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 2.6666,
+        "sp_lesson": 7,
+        "normal_lesson": 0,
+        "business": 7,
+        "outing": 5.0,
+        "consult": 1.0,
+        "special_instruction": 3.0,
+        "skill_upgrade": 4,
+        "skill_custom": 6,
+        "lesson_and_business_end": 14,
+        "rest": 0,
+        "audition_end": 3,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 11,
+        "a_skill_get": 4,
+        "m_skill_get": 7,
+        "ssr_card_get": 7,
+        "genki_get": 3,
+        "kocho_get": 5,
+        "shuchu_get": 4
+      }
+    },
+    "NIAマスター：お出かけ圧縮": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 890,
+        "auditions": [
+          {
+            "name": "1次オーディション",
+            "first": 92,
+            "second": 76,
+            "third": 62
+          },
+          {
+            "name": "2次オーディション",
+            "first": 119,
+            "second": 98,
+            "third": 80
+          },
+          {
+            "name": "最終オーディション",
+            "first": 172,
+            "second": 142,
+            "third": 116
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 3.5,
+        "sp_lesson": 7,
+        "normal_lesson": 0,
+        "business": 7,
+        "outing": 3.0,
+        "consult": 4.0,
+        "special_instruction": 2.0,
+        "skill_upgrade": 4,
+        "skill_custom": 6,
+        "lesson_and_business_end": 14,
+        "rest": 0,
+        "audition_end": 3,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 11,
+        "a_skill_get": 7.0,
+        "m_skill_get": 10.0,
+        "ssr_card_get": 7.0,
+        "genki_get": 6.0,
+        "kocho_get": 0.0,
+        "shuchu_get": 4,
+        "koinsho_get": 0.0,
+        "onzon_get": 11.0
+      }
+    },
+    "NIAマスター：お出かけ膨張(強化軸)": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 890,
+        "auditions": [
+          {
+            "name": "1次オーディション",
+            "first": 92,
+            "second": 76,
+            "third": 62
+          },
+          {
+            "name": "2次オーディション",
+            "first": 119,
+            "second": 98,
+            "third": 80
+          },
+          {
+            "name": "最終オーディション",
+            "first": 172,
+            "second": 142,
+            "third": 116
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 3.5,
+        "sp_lesson": 7,
+        "normal_lesson": 0,
+        "business": 7,
+        "outing": 6.0,
+        "consult": 1.0,
+        "special_instruction": 2.0,
+        "skill_upgrade": 4,
+        "skill_custom": 6,
+        "lesson_and_business_end": 14,
+        "rest": 0,
+        "audition_end": 3,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 11,
+        "a_skill_get": 8.0,
+        "m_skill_get": 11.0,
+        "ssr_card_get": 9.0,
+        "genki_get": 7.0,
+        "kocho_get": 0.0,
+        "shuchu_get": 4,
+        "koinsho_get": 0.0,
+        "onzon_get": 13.0
+      }
+    },
+    "NIAマスター膨張：センス": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 890,
+        "auditions": [
+          {
+            "name": "1次オーディション",
+            "first": 92,
+            "second": 76,
+            "third": 62
+          },
+          {
+            "name": "2次オーディション",
+            "first": 119,
+            "second": 98,
+            "third": 80
+          },
+          {
+            "name": "最終オーディション",
+            "first": 172,
+            "second": 142,
+            "third": 116
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 3.5,
+        "sp_lesson": 7,
+        "normal_lesson": 0,
+        "business": 7,
+        "outing": 1.0,
+        "consult": 1.0,
+        "special_instruction": 2.0,
+        "skill_upgrade": 4,
+        "skill_custom": 6,
+        "lesson_and_business_end": 14,
+        "rest": 0,
+        "audition_end": 3,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 11,
+        "a_skill_get": 0,
+        "m_skill_get": 0,
+        "ssr_card_get": 0,
+        "genki_get": 0,
+        "kocho_get": 0,
+        "shuchu_get": 4,
+        "koinsho_get": 0,
+        "onzon_get": 0
+      }
+    },
+    "NIAマスター膨張：ロジック": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 890,
+        "auditions": [
+          {
+            "name": "1次オーディション",
+            "first": 92,
+            "second": 76,
+            "third": 62
+          },
+          {
+            "name": "2次オーディション",
+            "first": 119,
+            "second": 98,
+            "third": 80
+          },
+          {
+            "name": "最終オーディション",
+            "first": 172,
+            "second": 142,
+            "third": 116
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 3.5,
+        "sp_lesson": 7,
+        "normal_lesson": 0,
+        "business": 7,
+        "outing": 1.0,
+        "consult": 1.0,
+        "special_instruction": 2.0,
+        "skill_upgrade": 4,
+        "skill_custom": 6,
+        "lesson_and_business_end": 14,
+        "rest": 0,
+        "audition_end": 3,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 11,
+        "a_skill_get": 0,
+        "m_skill_get": 0,
+        "ssr_card_get": 0,
+        "genki_get": 0,
+        "kocho_get": 0,
+        "shuchu_get": 4,
+        "koinsho_get": 0,
+        "onzon_get": 0
+      }
+    },
+    "NIAマスター膨張：アノマリー": {
+      "plan": "共通",
+      "base_values": {
+        "lesson": 890,
+        "auditions": [
+          {
+            "name": "1次オーディション",
+            "first": 92,
+            "second": 76,
+            "third": 62
+          },
+          {
+            "name": "2次オーディション",
+            "first": 119,
+            "second": 98,
+            "third": 80
+          },
+          {
+            "name": "最終オーディション",
+            "first": 172,
+            "second": 142,
+            "third": 116
+          }
+        ]
+      },
+      "action_counts": {
+        "lesson": 3.5,
+        "sp_lesson": 7,
+        "normal_lesson": 0,
+        "business": 7,
+        "outing": 0.0,
+        "consult": 2.0,
+        "special_instruction": 0.0,
+        "skill_upgrade": 4,
+        "skill_custom": 6,
+        "lesson_and_business_end": 14,
+        "rest": 0,
+        "audition_end": 3,
+        "param_event": 2
+      },
+      "card_gains": {
+        "skill_get": 11,
+        "a_skill_get": 12.0,
+        "m_skill_get": 12.0,
+        "ssr_card_get": 12.0,
+        "genki_get": 8.0,
+        "kocho_get": 0.0,
+        "shuchu_get": 4,
+        "koinsho_get": 0.0,
+        "onzon_get": 12.0
+      }
+    }
+  }
+}

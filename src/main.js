@@ -96,6 +96,47 @@ app.innerHTML = `
           </details>
         </aside>
       </section>
+
+      <section class="section-card portal-grid">
+        <article class="tool-card">
+          <span class="tool-label">公開中のツール</span>
+          <h2 class="tool-title">supportcard-status</h2>
+          <p class="tool-description">
+            学マスのサポートカードの編成をシミュレーションし、最終的なステータス上昇値を算出する計算ツールです。
+            カードのアビリティやイベント発動を考慮した精密な計算を、ブラウザ上で即座に行えます。
+          </p>
+          <a
+            class="button-link button-link--primary"
+            href="https://rectaris.github.io/status/"
+          >
+            ページへ移動
+          </a>
+        </article>
+
+        <aside class="meta-card">
+          <div>
+            <p class="meta-label">公開 URL</p>
+            <p class="meta-value">https://rectaris.github.io/status/</p>
+          </div>
+          <div>
+            <p class="meta-label">用途</p>
+            <p class="meta-value">
+              サポートカード編成の最適化、ステータス上昇値の試算、アビリティ検証
+            </p>
+          </div>
+          <details class="guide-disclosure">
+            <summary class="guide-summary">
+              <span class="guide-summary__eyebrow">supportcard-status の使い方</span>
+              <span class="guide-summary__title">試算を行う手順を見る</span>
+            </summary>
+            <ol class="guide-list">
+              <li>アイドルと育成モード（シナリオ）を選択する</li>
+              <li>サポートカードを 6 枚スロットにセットする</li>
+              <li>リアルタイムで算出されるステータス合計値を確認し、編成を調整する</li>
+            </ol>
+          </details>
+        </aside>
+      </section>
     </div>
 
     <p class="footer-note">
