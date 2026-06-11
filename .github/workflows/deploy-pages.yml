@@ -1,0 +1,80 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout portal
+        uses: actions/checkout@v4
+        with:
+          path: portal
+
+      - name: Checkout gakumasu-timeline
+        uses: actions/checkout@v4
+        with:
+          repository: rectaris/gakumasu-timeline
+          path: gakumasu-timeline
+
+      - name: Checkout supportcard-status
+        uses: actions/checkout@v4
+        with:
+          repository: rectaris/supportcard-status
+          path: supportcard-status
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Build gakumasu-timeline
+        working-directory: gakumasu-timeline
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build supportcard-status
+        working-directory: supportcard-status
+        run: |
+          npm ci
+          npm run build -- --base=/status/
+
+      - name: Assemble Pages artifact
+        run: |
+          mkdir -p public/gakumasu-timeline public/status
+          cp portal/index.html public/
+          cp -R portal/src public/src
+          cp -R gakumasu-timeline/dist/. public/gakumasu-timeline/
+          cp -R supportcard-status/dist/. public/status/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -11,3 +11,6 @@ node_modules/
 dist/
 coverage/
 tmp/
+
+# Built by .github/workflows/deploy-pages.yml.
+status/
