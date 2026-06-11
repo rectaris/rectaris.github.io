@@ -63,3 +63,14 @@ Implementation notes:
 - `gakumasu-timeline` already builds with `base: "/gakumasu-timeline/"`.
 - `supportcard-status` is built by the Pages workflow with `npm run build -- --base=/status/`.
 - Tracked `status/` build artifacts, including `status/static/cards.json.bak`, were removed from this repository. The Pages workflow now owns generated `/status/` output.
+
+## Completion
+
+- Commit: `338f285` (`Build Pages artifact in workflow`)
+- Public path changes: none. Existing `/gakumasu-timeline/` and `/status/` paths are preserved.
+- Validation:
+  - `git diff --check`
+  - `python3 scripts/security-static-check.py`
+  - `python3 scripts/lint-plan-docs.py`
+  - `python3 scripts/validate-changes.py --all`
+- Residual risk: GitHub Actions deployment was not executed locally; it must run on GitHub after push.

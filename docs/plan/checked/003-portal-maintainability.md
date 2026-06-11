@@ -44,3 +44,19 @@ Public links remain unchanged:
 
 - `https://rectaris.github.io/gakumasu-timeline/`
 - `https://rectaris.github.io/status/`
+
+## Completion
+
+- Commits:
+  - `857dc23` (`Refactor portal tool cards`)
+  - `eb8e66c` (`Share plan validation helpers`)
+- Public path changes: none.
+- Validation:
+  - `node --check src/main.js`
+  - `python3 -m py_compile scripts/planlib.py scripts/lint-plan-docs.py scripts/validate-changes.py`
+  - `git diff --check`
+  - `python3 scripts/lint-plan-docs.py`
+  - `python3 scripts/format-plan-docs.py --check`
+  - `python3 scripts/security-static-check.py`
+  - `python3 scripts/structure-map.py --check`
+  - `python3 scripts/validate-changes.py --all`
