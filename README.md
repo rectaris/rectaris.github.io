@@ -30,7 +30,7 @@ MCP、Linear、graph memory は任意機能です。現在の有効化状態と�
 
 `supportcard-status` の checkout 先は GitHub 上の `rectaris/calc-sapo` です。
 
-別リポジトリが private の場合だけ、`GITHUB_TOKEN` では checkout できないため、リポジトリまたは environment secret に `CROSS_REPO_READ_TOKEN` を登録してください。public repo として読める場合、この secret は不要です。
+別リポジトリが private の場合、`GITHUB_TOKEN` では checkout できないため、リポジトリ secret または `github-pages` environment secret に `CROSS_REPO_READ_TOKEN` を登録してください。workflow は checkout 前に対象リポジトリへの読み取り可否を検証し、secret が未設定または権限不足の場合は明示的に失敗します。public repo として読める場合、この secret は不要です。
 
 - 必要権限: `rectaris/gakumasu-timeline` と `rectaris/calc-sapo` の `Contents: read`
 - 推奨: fine-grained personal access token または同等の read-only token
