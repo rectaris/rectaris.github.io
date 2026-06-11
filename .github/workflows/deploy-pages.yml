@@ -23,17 +23,30 @@ jobs:
         with:
           path: portal
 
+      - name: Verify cross-repository token
+        env:
+          CROSS_REPO_READ_TOKEN: ${{ secrets.CROSS_REPO_READ_TOKEN }}
+        run: |
+          if [ -z "$CROSS_REPO_READ_TOKEN" ]; then
+            echo "::error title=Missing CROSS_REPO_READ_TOKEN::Create a repository or environment secret named CROSS_REPO_READ_TOKEN with read access to rectaris/gakumasu-timeline and rectaris/supportcard-status."
+            exit 1
+          fi
+
       - name: Checkout gakumasu-timeline
         uses: actions/checkout@v4
         with:
           repository: rectaris/gakumasu-timeline
           path: gakumasu-timeline
+          token: ${{ secrets.CROSS_REPO_READ_TOKEN }}
+          persist-credentials: false
 
       - name: Checkout supportcard-status
         uses: actions/checkout@v4
         with:
           repository: rectaris/supportcard-status
           path: supportcard-status
+          token: ${{ secrets.CROSS_REPO_READ_TOKEN }}
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
