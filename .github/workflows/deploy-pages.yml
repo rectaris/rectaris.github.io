@@ -43,10 +43,10 @@ jobs:
 
       - name: Assemble Pages artifact
         run: |
-          mkdir -p public/gakumasu-timeline
+          mkdir -p public/timeline
           cp portal/index.html public/
           cp -R portal/src public/src
-          cp -R gakumasu-timeline/dist/. public/gakumasu-timeline/
+          cp -R gakumasu-timeline/dist/. public/timeline/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

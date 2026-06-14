@@ -11,7 +11,7 @@ const tools = [
   {
     title: "gakumasu-timeline",
     label: "年表アプリ",
-    url: "https://rectaris.github.io/gakumasu-timeline/",
+    url: "https://rectaris.github.io/timeline/",
     host: "GitHub Pages",
     description: [
       "学マスのコミュや出来事を、時間軸の上で俯瞰しながら確認できる年表アプリです。",
@@ -153,7 +153,7 @@ app.innerHTML = `
       <div class="hero-actions">
         <a
           class="button-link button-link--primary"
-          href="https://rectaris.github.io/gakumasu-timeline/"
+          href="https://rectaris.github.io/timeline/"
         >
           gakumasu-timeline を開く
         </a>
