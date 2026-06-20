@@ -13,3 +13,4 @@ id	path
 010	docs/plan/checked/010-portal-title-favicon.md
 011	docs/plan/checked/011-timeline-link-integration.md
 012	docs/plan/checked/012-timeline-editing-notice.md
+013	docs/plan/checked/013-pages-timeline-dev-artifact.md

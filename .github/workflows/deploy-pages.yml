@@ -39,7 +39,7 @@ jobs:
         working-directory: gakumasu-timeline
         run: |
           npm ci
-          npm run build
+          npm run build -- --base=/timeline/
 
       - name: Assemble Pages artifact
         run: |
@@ -47,6 +47,10 @@ jobs:
           cp portal/index.html public/
           cp -R portal/src public/src
           cp -R gakumasu-timeline/dist/. public/timeline/
+          if [ -d portal/timeline/dev ]; then
+            mkdir -p public/timeline/dev
+            cp -R portal/timeline/dev/. public/timeline/dev/
+          fi
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
