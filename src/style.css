@@ -314,6 +314,21 @@ button {
   overflow-wrap: anywhere;
 }
 
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 24px;
+  padding: 3px 9px;
+  border: 1px solid rgba(181, 77, 51, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--accent-text);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
 .tool-summary__icon {
   width: 10px;
   height: 10px;
@@ -347,6 +362,13 @@ button {
   gap: 14px;
   padding: 4px 0;
   align-self: start;
+}
+
+.tool-label-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
 }
 
 .tool-label {
@@ -469,8 +491,13 @@ button {
 
 @media (prefers-color-scheme: dark) {
   .tool-summary__label,
-  .guide-summary__eyebrow {
+  .guide-summary__eyebrow,
+  .status-badge {
     color: var(--accent-text-strong);
+  }
+
+  .status-badge {
+    background: rgba(27, 32, 37, 0.72);
   }
 }
 

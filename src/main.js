@@ -11,17 +11,19 @@ const tools = [
   {
     title: "gakumasu-timeline",
     label: "年表アプリ",
+    status: "編集中",
     url: "https://rectaris.github.io/timeline/",
     host: "GitHub Pages",
     description: [
       "学マスのコミュや出来事を、時間軸の上で俯瞰しながら確認できる年表アプリです。",
       "表示期間とレーン密度を調整しながら、見たい対象をレーン単位で絞り込んで確認できます。",
+      "現在編集中のため、掲載内容・表示・機能は更新される場合があります。",
     ],
-    usage: "学マス年表の閲覧、レーン単位の見比べ、出来事の詳細確認",
+    usage: "学マス年表の閲覧、レーン単位の見比べ、出来事の詳細確認（編集中）",
     guideEyebrow: "gakumasu-timeline の使い方",
     guideTitle: "開いて確認する手順を見る",
     guideSteps: [
-      "まず gakumasu-timeline を開いて、全体の時系列を確認する",
+      "まず gakumasu-timeline を開いて、編集中の内容であることを確認する",
       "表示期間とレーン密度を調整し、見やすい範囲に合わせる",
       "必要に応じてカテゴリやレーンを絞り込み、気になるイベントの詳細を読む",
     ],
@@ -71,18 +73,33 @@ function renderGuideSteps(steps) {
 }
 
 function renderToolSection(tool) {
+  const statusBadge = tool.status
+    ? `<span class="status-badge">${tool.status}</span>`
+    : "";
+  const statusMeta = tool.status
+    ? `
+            <div>
+              <p class="meta-label">状態</p>
+              <p class="meta-value">${tool.status}</p>
+            </div>`
+    : "";
+
   return `
       <details class="section-card tool-disclosure">
         <summary class="tool-summary">
           <span class="tool-summary__text">
             <span class="tool-summary__label">${tool.label}</span>
             <span class="tool-summary__title">${tool.title}</span>
+            ${statusBadge}
           </span>
           <span class="tool-summary__icon" aria-hidden="true"></span>
         </summary>
         <div class="portal-grid tool-details">
           <article class="tool-card">
-            <span class="tool-label">${tool.label}</span>
+            <span class="tool-label-row">
+              <span class="tool-label">${tool.label}</span>
+              ${statusBadge}
+            </span>
             <h2 class="tool-title">${tool.title}</h2>
             <p class="tool-description">
               ${tool.description.join("\n              ")}
@@ -113,6 +130,7 @@ function renderToolSection(tool) {
               <p class="meta-label">配信元</p>
               <p class="meta-value">${tool.host}</p>
             </div>
+            ${statusMeta}
             <div>
               <p class="meta-label">用途</p>
               <p class="meta-value">
@@ -155,7 +173,7 @@ app.innerHTML = `
           class="button-link button-link--primary"
           href="https://rectaris.github.io/timeline/"
         >
-          gakumasu-timeline を開く
+          gakumasu-timeline（編集中）を開く
         </a>
         <a
           class="button-link button-link--primary"
